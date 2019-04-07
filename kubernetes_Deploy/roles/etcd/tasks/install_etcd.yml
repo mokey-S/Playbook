@@ -16,4 +16,4 @@
 - name: Rsync etcd.service
   copy:
     dest: /usr/lib/systemd/system/etcd.service
-    src: etcd.serive
+    src: etcd.service
