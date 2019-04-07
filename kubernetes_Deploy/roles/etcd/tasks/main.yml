@@ -1,1 +1,2 @@
+- import_tasks: init_dir.yml
 - import_tasks: ca.yml
