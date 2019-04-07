@@ -2,7 +2,7 @@
     "CN": "etcd",
     "hosts": [
      {% for host in groups['etcd'] %}
-    “{{ host }}”,
+    "{{ host }}",
      {% endfor %}
       "127.0.0.1"
     ],
