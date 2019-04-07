@@ -14,7 +14,7 @@
   local_action:
     copy:
       dest: /export/servers/etcd/ssl/{{ item }}
-      src: {{ item }}
+      src: "{{ item }}"
     with_items:
       - ca-config.json
       - ca-csr.json
