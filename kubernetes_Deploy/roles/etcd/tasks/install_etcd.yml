@@ -1,0 +1,19 @@
+---
+- name: Rsync etcd & etcdctl
+  copy:
+    dest: /export/servers/etcd/bin/{{ item }}
+    src: "{{ item }}"
+    mode: 755
+  with_items:
+    - etcd
+    - etcdctl
+
+- name: Rsync etcd conf
+  template:
+    dest: /export/servers/etcd/conf/etcd
+    src: etcd.j2
+
+- name: Rsync etcd.service
+  copy:
+    dest: /usr/lib/systemd/system/etcd.service
+    src: etcd.serive

@@ -1,0 +1,6 @@
+---
+- name: Start etcd and enable service
+  systemd:
+    state: restarted
+    deamon_reload: yes
+    enabled: yes

@@ -1,2 +1,4 @@
 - import_tasks: init_dir.yml
 - import_tasks: ca.yml
+- import_tasks: install_etcd.yml
+- import_tasks: restart.yml
