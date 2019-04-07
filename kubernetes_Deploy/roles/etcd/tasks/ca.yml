@@ -1,0 +1,25 @@
+---
+- name: Download cfssl tools
+  local_action:
+    get_url:
+      url: "{{ item.url }}"
+      dest: /usr/local/bin/"{{ item.dest }}"
+      mode: 755
+    with_items:
+      - { url: "https://pkg.cfssl.org/R1.2/cfssl_linux-amd64",dest: "cfssl" }
+      - { url: "https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64",dest: "cfssljson" }
+      - { url: "https://pkg.cfssl.org/R1.2/cfssl-certinfo_linux-amd64",dest: "cfssl-certinfo" }
+
+- name: Init json to CA
+  local_action:
+    copy:
+      dest: /export/servers/etcd/ssl/{{ item }}
+      src: {{ item }}
+    with_items:
+      - ca-config.json
+      - ca-csr.json
+
+- name: Modify server-csr.json
+  template:
+    dest: /export/servers/etcd/ssl/server-csr.json
+    src: server-csr.json.j2

@@ -1,0 +1,21 @@
+{
+    "CN": "etcd",
+    "hosts": [
+      {% for host in groups['etcd'] %},
+    “{{ host }}”,
+      {% end for %},
+    “192.168.145.10”,
+    “192.168.145.12”,
+    ],
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "names": [
+        {
+            "C": "CN",
+            "L": "BeiJing",
+            "ST": "BeiJing"
+        }
+    ]
+}
