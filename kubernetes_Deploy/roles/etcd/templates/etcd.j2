@@ -7,6 +7,6 @@ ETCD_LISTEN_CLIENT_URLS="https://{{ hostvars[inventory_hostname]['ansible_defaul
 #[Clustering]
 ETCD_INITIAL_ADVERTISE_PEER_URLS="https://{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}:2380"
 ETCD_ADVERTISE_CLIENT_URLS="https://{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}:2379"
-ETCD_INITIAL_CLUSTER="{% for host in groups['etcd'] %} etcd0{{ groups['etcd'].index(hostvars[inventory_hostname]['ansible_default_ipv4']['address'])+1 }}=https://{{ host }}:2380,{% endfor %}"
+ETCD_INITIAL_CLUSTER="{% for host in groups['etcd'] %} etcd0{{ groups['etcd'].index(host)+1 }}=https://{{ host }}:2380,{% endfor %}"
 ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
 ETCD_INITIAL_CLUSTER_STATE="new"
