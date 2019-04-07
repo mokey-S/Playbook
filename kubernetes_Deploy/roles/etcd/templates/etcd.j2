@@ -1,5 +1,5 @@
 #[Member]
-ETCD_NAME="etcd01"
+ETCD_NAME="etcd0{{ groups['etcd'].index(hostvars[inventory_hostname]['ansible_default_ipv4']['address'])+1 }}"
 ETCD_DATA_DIR="/export/servers/etcd/data/default.etcd"
 ETCD_LISTEN_PEER_URLS="https://{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}:2380"
 ETCD_LISTEN_CLIENT_URLS="https://{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}:2379"
