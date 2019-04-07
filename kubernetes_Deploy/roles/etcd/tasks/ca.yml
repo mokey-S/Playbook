@@ -2,7 +2,7 @@
 - name: Download cfssl tools
   get_url:
     url: "{{ item.url }}"
-    dest: /usr/local/bin/"{{ item.dest }}"
+    dest: /usr/local/bin/{{ item.dest }}
     mode: 755
   with_items:
     - { url: "https://pkg.cfssl.org/R1.2/cfssl_linux-amd64", dest: "cfssl" }

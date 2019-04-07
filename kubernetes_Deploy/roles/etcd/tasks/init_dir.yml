@@ -1,7 +1,7 @@
 ---
 - name: Create ETCD Directory
   file:
-    dest: /export/servers/etcd/"{{ item }}"
+    dest: /export/servers/etcd/{{ item }}
     state: directory
   with_items:
     - bin
@@ -11,7 +11,7 @@
 
 - name: Create kubernetes Dirdctory
   file:
-    dest: /export/servers/kubernetes/"{{ item }}"
+    dest: /export/servers/kubernetes/{{ item }}
     state: directory
   with_items:
     - bin
