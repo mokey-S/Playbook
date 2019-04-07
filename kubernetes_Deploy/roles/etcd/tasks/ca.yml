@@ -25,8 +25,12 @@
     src: server-csr.json.j2
   delegate_to: localhost
 
-- name: Create PEM
-  shell: cd /export/servers/etcd/ssl/ ; cfssl gencert -initca ca-csr.json | cfssljson -bare ca -
+- name: Create PEM step 1
+  shell: cd /export/servers/etcd/ssl/ ; /usr/local/bin/cfssl gencert -initca ca-csr.json | cfssljson -bare ca -
+  delegate_to: localhost
+
+- name: Create PEM step 2
+  shell: cd /export/servers/etcd/ssl/ ; /usr/local/bin/cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=www server-csr.json | /usr/local/bin/cfssljson -bare server
   delegate_to: localhost
 
 - name: Rsync pem to etcd server
