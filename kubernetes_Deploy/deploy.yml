@@ -1,14 +1,15 @@
 ---
-- name: set local facts for etcd
+- name: install etcd
   hosts: etcd
   gather_facts: true
-#  vars_files:
-#  - environments/jddb_pgsql/{{ eidc }}/{{ eidc }}.yml
-#  - environments/jddb_pgsql/{{ eidc }}/{{ region_conf }}.yml
-#  - environments/jddb_pgsql/{{ eidc }}/{{ region_sec }}.yml
-
   roles:
   - etcd
+
+- name: init flannel network
+  hosts: all
+  grther_facts: true
+  roles:
+    - flannel
 
 #- name: set local facts for kubernetes
 #  hosts: kubernetes

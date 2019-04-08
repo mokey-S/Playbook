@@ -1,0 +1,14 @@
+---
+- name: add docker-cd repo
+  yum_repository:
+    name: docker-ce
+    file: https://download.docker.com/linux/centos/docker-ce.repo
+
+- name: Install device-mapper
+  yum:
+    name: "{{ item }}"
+  with_items:
+    - yum-utils
+    - device-mapper-persistent-data
+    - lvm2
+    - docker-ce
