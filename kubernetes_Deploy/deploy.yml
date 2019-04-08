@@ -19,9 +19,6 @@
 #  hosts: kubernetes
 #  gather_facts: true
 #  vars_files:
-#    - environments/jddb_pgsql/{{ eidc }}/{{ eidc }}.yml
-#    - environments/jddb_pgsql/{{ eidc }}/{{ region_conf }}.yml
-#    - environments/jddb_pgsql/{{ eidc }}/{{ region_sec }}.yml
-#
+
 #  roles:
 #    - kubernetes
