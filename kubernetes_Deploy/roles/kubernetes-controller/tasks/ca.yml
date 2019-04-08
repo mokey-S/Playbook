@@ -1,1 +1,40 @@
 ---
+- name: Rsync file json to CA step 1
+  copy:
+    dest: /export/servers/kubernetes/ssl/{{ item }}
+    src: "{{ item }}"
+  with_items:
+    - ca-config.json
+    - ca-csr.json
+    - kube-proxy-csr.json
+  delegate_to: "{{ groups['etcd'][0] }}"
+
+- name: Rsync template json to CA step 2
+  copy:
+    dest: /export/servers/kubernetes/ssl/server-csr.json
+    src: server-csr.json.j2
+  delegate_to: "{{ groups['etcd'][0] }}"
+
+- name: Init CA
+  shell: cd /export/servers/kubernetes/ssl/; /usr/local/bin/cfssl gencert -initca ca-csr.json | cfssljson -bare ca -
+  delegate_to: "{{ groups['etcd'][0] }}"
+
+- name: Init API CA
+  shell: cd /export/servers/kubernetes/ssl/; /usr/local/bin/cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kubernetes server-csr.json | cfssljson -bare server
+  delegate_to: "{{ groups['etcd'][0] }}"
+
+- name: Init PROXY CA
+  shell: cd /export/servers/kubernetes/ssl/; /usr/local/bin/cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kubernetes kube-proxy-csr.json | cfssljson -bare kube-proxy
+
+- name: Rsync CA
+  copy:
+    dest: /export/servers/kubernetes/ssl/{{ item }}
+    src: /export/servers/kubernetes/ssl/{{ item }}
+  with_items:
+    - ca-key.pem
+    - ca.pem
+    - kube-proxy-key.pem
+    - kube-proxy.pem
+    - server-key.pem
+    - server.pem
+

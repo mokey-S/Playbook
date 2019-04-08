@@ -15,6 +15,14 @@
   tags:
   - network
 
+- name: init kubernetes controller
+  hosts: all
+  gather_facts: true
+  roles:
+  - kubernetes-controller
+  tags:
+  - controller
+
 #- name: set local facts for kubernetes
 #  hosts: kubernetes
 #  gather_facts: true
