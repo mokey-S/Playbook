@@ -1,6 +1,6 @@
 ---
 - name: Init network config
-  raw: /export/servers/etcd/bin/etcdctl --ca-file=/export/servers/etcd/ssl/ca.pem --cert-file=/export/servers/etcd/ssl/server.pem --key-file=/export/servers/etcd/ssl/server-key.pem --endpoints="https://localhost:2379" set /coreos.com/network/config  '{ "Network":"10.10.0.0/17", "Backend":{"Type":"vxlan"}}'
+  raw: /export/servers/etcd/bin/etcdctl --ca-file=/export/servers/etcd/ssl/ca.pem --cert-file=/export/servers/etcd/ssl/server.pem --key-file=/export/servers/etcd/ssl/server-key.pem --endpoints="https://{{ groups['etcd'][0] }}:2379" set /coreos.com/network/config  '{ "Network":"10.10.0.0/17", "Backend":{"Type":"vxlan"}}'
   delegate_to: localhost
 
 - name: Install flannel
