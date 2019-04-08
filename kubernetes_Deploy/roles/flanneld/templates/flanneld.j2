@@ -1,1 +1,1 @@
-FLANNEL_OPTIONS="--etcd-endpoints=https://groups['etcd'][0]:2379,https://groups['etcd'][1]:2379,https://groups['etcd'][2]:2379 -etcd-cafile=/export/servers/etcd/ssl/ca.pem -etcd-certfile=/export/servers/etcd/ssl/server.pem -etcd-keyfile=/export/servers/etcd/ssl/server-key.pem"
+FLANNEL_OPTIONS="--etcd-endpoints=https://{{ groups['etcd'][0] }}:2379,https://{{ groups['etcd'][1] }}:2379,https://{{groups['etcd'][2] }}:2379 -etcd-cafile=/export/servers/etcd/ssl/ca.pem -etcd-certfile=/export/servers/etcd/ssl/server.pem -etcd-keyfile=/export/servers/etcd/ssl/server-key.pem"
