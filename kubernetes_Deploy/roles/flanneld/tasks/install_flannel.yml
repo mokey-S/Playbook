@@ -6,7 +6,7 @@
 - name: Install flannel
   copy:
     src: "{{ item }}"
-    dest: /export/servers/kubernetes/bin/{{ item }}
+    dest: /export/servers/etcd/bin/{{ item }}
     mode: 755
   with_items:
     - flanneld
@@ -14,7 +14,7 @@
 
 - name: Init flannel config
   template:
-    dest: /export/servers/kubernetes/conf/flanneld
+    dest: /export/servers/etcd/conf/flanneld
     src: flanneld.j2
 
 - name: Init flannel service
