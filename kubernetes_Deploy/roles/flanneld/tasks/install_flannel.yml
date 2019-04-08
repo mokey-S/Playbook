@@ -4,7 +4,7 @@
   delegate_to: localhost
 
 - name: Install flannel
-  file:
+  copy:
     src: "{{ item }}"
     dest: /export/servers/kubernetes/bin/{{ item }}
     mode: 755
@@ -18,7 +18,7 @@
     src: flanneld.j2
 
 - name: Init flannel service
-  file:
+  copy:
     dest: /usr/lib/systemd/system/flanneld.service
     src: flanneld.service
 
