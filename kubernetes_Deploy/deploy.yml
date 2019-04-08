@@ -7,7 +7,7 @@
 
 - name: init flannel network
   hosts: all
-  grther_facts: true
+  gather_facts: true
   roles:
     - flannel
 
