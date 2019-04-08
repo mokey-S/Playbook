@@ -5,3 +5,35 @@
     --endpoints="https://localhost:2379" \
     set /coreos.com/network/config  '{ "Network": "10.10.0.0/17", "Backend": {"Type": "vxlan"}}'
   delegate_to: localhost
+
+- name: Install flannel
+  file:
+    dest: /export/servers/kubernetes/bin/{{ item }}
+    src: "{{ item }}"
+    mode: 755
+  with_items:
+    - flanneld
+    - mk-docker-opts.s
+
+- name: Init flannel config
+  template:
+    dest: /export/servers/kubernetes/conf/flanneld
+    src: flanneld.j2
+
+- name: Init flannel service
+  file:
+    dest: /usr/lib/systemd/system/flanneld.service
+    src: flanneld.service
+
+- name: Modify docker service step 1
+  lineinfile:
+    dest: /usr/lib/systemd/system/docker.service
+    insertbefore: ^ExecStart
+    regexp: ^EnvironmentFile
+    line: EnvironmentFile=/run/flannel/subnet.env
+
+- name: Modify docker service step 2
+  lineinfile:
+    dest: /usr/lib/systemd/system/docker.service
+    regexp: ^ExecStart
+    line: ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock $DOCKER_NETWORK_OPTIONS
