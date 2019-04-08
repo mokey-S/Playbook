@@ -3,6 +3,15 @@
 192.168.145.10
 192.168.145.12
 
+[kubernetes-controller]
+192.168.145.8
+192.168.145.10
+192.168.145.12
+
+[kubernetes-datanode]
+
 
 [all:children]
 etcd
+kubernetes-controller
+kubernetes-datanode
