@@ -9,7 +9,7 @@
   hosts: all
   gather_facts: true
   roles:
-    - flannel
+  - flanneld
 
 #- name: set local facts for kubernetes
 #  hosts: kubernetes
