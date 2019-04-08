@@ -8,7 +8,7 @@
 #    - etcd
 
 - name: init flannel network
-  hosts: all
+  hosts: etcd
   gather_facts: false
   roles:
   - flanneld

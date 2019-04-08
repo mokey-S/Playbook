@@ -1,5 +1,5 @@
 ---
-- name: add docker-cd repo
+- name: add docker-ce repo
   yum_repository:
     name: docker-ce
     file: https://download.docker.com/linux/centos/docker-ce.repo
