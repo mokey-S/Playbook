@@ -9,7 +9,9 @@
   hosts: net-all
   gather_facts: true
   roles:
-  - flanneld
+    - flanneld
+  tags:
+    - network
 
 #- name: set local facts for kubernetes
 #  hosts: kubernetes
