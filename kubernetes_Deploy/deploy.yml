@@ -13,7 +13,7 @@
   roles:
   - flanneld
   tags:
-    - network
+  - network
 
 #- name: set local facts for kubernetes
 #  hosts: kubernetes
