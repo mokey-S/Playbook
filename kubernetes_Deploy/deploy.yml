@@ -9,7 +9,7 @@
 
 - name: init flannel network
   hosts: all
-  gather_facts: false
+  gather_facts: true
   roles:
   - flanneld
   tags:
