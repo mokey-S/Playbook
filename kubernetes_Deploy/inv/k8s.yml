@@ -4,5 +4,5 @@
 192.168.145.12
 
 
-[net-all:children]
+[all:children]
 etcd

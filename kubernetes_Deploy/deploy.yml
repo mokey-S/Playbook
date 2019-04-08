@@ -4,9 +4,11 @@
   gather_facts: true
   roles:
   - etcd
+  tags:
+    - etcd
 
 - name: init flannel network
-  hosts: net-all
+  hosts: all
   gather_facts: true
   roles:
     - flanneld
