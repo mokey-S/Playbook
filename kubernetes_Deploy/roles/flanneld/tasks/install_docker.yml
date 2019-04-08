@@ -1,8 +1,8 @@
 ---
 - name: add docker-ce repo
-  yum_repository:
-    name: docker-ce
-    file: https://download.docker.com/linux/centos/docker-ce.repo
+  get_url:
+    dest: /etc/yum.repos.d/docker-ce.repo
+    url: https://download.docker.com/linux/centos/docker-ce.repo
 
 - name: Install device-mapper
   yum:
