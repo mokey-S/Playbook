@@ -1,17 +1,17 @@
 ---
-- name: install etcd
-  hosts: etcd
-  gather_facts: true
-  roles:
-  - etcd
-  tags:
-    - etcd
+#- name: install etcd
+#  hosts: etcd
+#  gather_facts: true
+#  roles:
+#  - etcd
+#  tags:
+#    - etcd
 
 - name: init flannel network
   hosts: all
-  gather_facts: true
+  gather_facts: false
   roles:
-    - flanneld
+  - flanneld
   tags:
     - network
 
