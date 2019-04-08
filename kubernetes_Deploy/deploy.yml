@@ -6,7 +6,7 @@
   - etcd
 
 - name: init flannel network
-  hosts: all
+  hosts: net-all
   gather_facts: true
   roles:
   - flanneld
