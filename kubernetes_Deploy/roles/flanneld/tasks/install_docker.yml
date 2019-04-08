@@ -6,6 +6,6 @@
 
 - name: Install device-mapper
   yum:
-    name: ['yum-utils','device-mapper-persistent-data', 'lvm2', 'docker-ce','nfs']
+    name: ['yum-utils','device-mapper-persistent-data', 'lvm2', 'docker-ce','nfs-utils']
 
 
